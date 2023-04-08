@@ -9,11 +9,11 @@ sliderContainer.addEventListener('mousemove', (event) => {
   const width = sliderContainer.clientWidth;
   const percentage = (offsetX / width) * 100;
 
-  beforeImage.style.width = `${100 - percentage}%`;
+  beforeImage.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
   sliderBar.style.left = `${offsetX}px`;
 });
 
 sliderContainer.addEventListener('mouseleave', () => {
-  beforeImage.style.width = '50%';
+  beforeImage.style.clipPath = 'inset(0 50% 0 0)';
   sliderBar.style.left = '50%';
 });
