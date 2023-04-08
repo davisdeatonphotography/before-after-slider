@@ -9,8 +9,8 @@ body {
 
 .slider-container {
   position: relative;
-  width: 50vw;
-  height: calc(50vw * 9 / 16);
+  width: vw;
+  height: calc(vw * 9 / 16);
   overflow: hidden;
 }
 
@@ -28,14 +28,14 @@ body {
   background-repeat: no-repeat;
   width: 100%;
   z-index: 2;
-  transition: width 0.01s;
+  transition: width 0.1s;
 }
 
 .slider-bar {
   position: absolute;
-  width: 40px;
+  width: 4px;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.7);
   z-index: 3;
-  transition: left 0.01s;
+  transition: left 0.1s;
 }
