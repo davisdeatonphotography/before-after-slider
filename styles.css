@@ -9,8 +9,8 @@ body {
 
 .slider-container {
   position: relative;
-  width: 80vw;
-  height: calc(80vw * 9 / 16);
+  width: 50vw;
+  height: calc(50vw * 9 / 16);
   overflow: hidden;
 }
 
