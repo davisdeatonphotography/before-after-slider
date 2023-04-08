@@ -1,13 +1,14 @@
-document.addEventListener('DOMContentLoaded', function() {
-  const container = document.querySelector('.slider-container');
-  const beforeImage = document.querySelector('.before-image');
+const sliderContainer = document.querySelector('.slider-container');
+const beforeImage = document.querySelector('.before-image');
 
-  container.addEventListener('mousemove', (e) => {
-    const rect = container.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const containerWidth = container.offsetWidth;
-    const percent = x / containerWidth;
+sliderContainer.addEventListener('mousemove', (event) => {
+  const offsetX = event.clientX - sliderContainer.getBoundingClientRect().left;
+  const width = sliderContainer.clientWidth;
+  const percentage = (offsetX / width) * 100;
 
-    beforeImage.style.width = `${percent * 100}%`;
-  });
+  beforeImage.style.width = `${percentage}%`;
+});
+
+sliderContainer.addEventListener('mouseleave', () => {
+  beforeImage.style.width = '50%';
 });
