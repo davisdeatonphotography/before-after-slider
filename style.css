@@ -55,12 +55,10 @@ h1 {
 
 .slider-bar {
   position: absolute;
-  width: 4px;
+  top: 0;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.7);
-  z-index: 3;
-  left: 50%;
-  transition: left 0.1s;
+  width: 4px;
+  background: #fff;
 }
 
 .tooltip {
