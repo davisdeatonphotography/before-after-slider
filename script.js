@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   const sliderContainer = document.querySelector('.slider-container');
   const afterImg = document.querySelector('.after-img');
-  const handle = document.querySelector('.handle');
   const handleContainer = document.querySelector('.handle-container');
   const sliderBar = document.createElement('div');
   sliderBar.className = 'slider-bar';
