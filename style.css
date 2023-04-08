@@ -1,6 +1,7 @@
 body {
   font-family: Arial, sans-serif;
   text-align: center;
+  background-color: #000;
 }
 
 .container {
@@ -11,6 +12,7 @@ body {
 h1 {
   font-size: 24px;
   font-weight: bold;
+  color: #fff;
 }
 
 .slider-container {
@@ -19,8 +21,8 @@ h1 {
   padding-top: 56.25%; /* 16:9 Aspect Ratio */
   overflow: hidden;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border: 1px solid #333;
+  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, rgba(128, 128, 128, 0.2), rgba(0, 0, 0, 0.6));
 }
 
 .before-img,
@@ -35,7 +37,7 @@ h1 {
 }
 
 .after-img {
-  clip-path: inset(0 50% 0 0);
+  clip-path: inset(0 70% 0 0);
 }
 
 .handle-container {
@@ -48,39 +50,17 @@ h1 {
 }
 
 .handle {
+  display: none;
+}
+
+.slider-bar {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 24px;
-  height: 24px;
-  margin-top: -12px;
-  margin-left: -12px;
-  border-radius: 50%;
+  top: 0;
+  height: 100%;
+  width: 2px;
   background: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  pointer-events: all;
 }
 
 .tooltip {
-  position: absolute;
-  bottom: 120%;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #333;
-  color: #fff;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 14px;
-  white-space: nowrap
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  opacity: 0;
-  transition: opacity 0.3s;
-  pointer-events: none;
+  display: none;
 }
-
-.handle:hover + .tooltip,
-.tooltip:hover {
-  opacity: 1;
-}
-
