@@ -1,20 +1,29 @@
-const sliderContainer = document.querySelector('.slider-container');
-const beforeImage = document.querySelector('.before-image');
-const sliderBar = document.createElement('div');
-sliderBar.className = 'slider-bar';
-sliderContainer.appendChild(sliderBar);
+document.addEventListener('DOMContentLoaded', function () {
+  const sliderContainer = document.querySelector('.slider-container');
+  const afterImg = document.querySelector('.after-img');
+  const handleContainer = document.querySelector('.handle-container');
+  const sliderBar = document.createElement('div');
+  sliderBar.className = 'slider-bar';
+  sliderContainer.appendChild(sliderBar);
 
-sliderContainer.addEventListener('mousemove', (event) => {
-  const offsetX = event.clientX - sliderContainer.getBoundingClientRect().left;
-  const width = sliderContainer.clientWidth;
-  const percentage = (offsetX / width) * 100;
+  function updateSlider(e) {
+    const rect = sliderContainer.getBoundingClientRect();
+    const offsetX = e.clientX - rect.left;
+    const width = sliderContainer.clientWidth;
+    const position = offsetX / width;
+    afterImg.style.clipPath = `inset(0 ${100 - position * 100}% 0 0)`;
+    sliderBar.style.left = `${position * 100}%`;
+  }
 
-  beforeImage.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
-  sliderBar.style.left = `${offsetX}px`;
+  handleContainer.addEventListener('mousemove', updateSlider);
+
+  handleContainer.addEventListener('mouseleave', function () {
+    afterImg.style.clipPath = 'inset(0 70% 0 0)';
+    sliderBar.style.left = '30%';
+  });
+
+  handleContainer.addEventListener('mouseenter', function () {
+    afterImg.style.clipPath = 'inset(0 50% 0 0)';
+    sliderBar.style.left = '50%';
+  });
 });
-
-sliderContainer.addEventListener('mouseleave', () => {
-  beforeImage.style.clipPath = 'inset(0 50% 0 0)';
-  sliderBar.style.left = '50%';
-});
-
