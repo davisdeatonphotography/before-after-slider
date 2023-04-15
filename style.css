@@ -1,32 +1,42 @@
 body {
-  background-color: black;
+     background-color: black;
 }
-
-.image-comparison {
-  position: relative;
-  display: inline-block;
-  overflow: hidden;
+ .image-comparison {
+     position: relative;
+     display: inline-block;
+     overflow: hidden;
+     border-radius: 10px;
+     box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
-
-.before-image,
-.after-image {
-  max-width: 100%;
-  height: auto;
+ .photo-name, .photo-description {
+     margin: 0;
+     color: rgba(255, 255, 255, 0.9);
 }
-
-.after-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  clip-path: inset(0 50% 0 0);
+ .before-image, .after-image {
+     max-width: 100%;
+     height: auto;
 }
-
-.slider {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 2px;
-  background-color: rgba(255, 255, 255, 0.5);
-  cursor: ew-resize;
+ .after-image {
+     position: absolute;
+     top: 0;
+     left: 0;
+     clip-path: inset(0 50% 0 0);
 }
+ .slider {
+     position: absolute;
+     top: 0;
+     bottom: 0;
+     left: 50%;
+     width: 2px;
+     background-color: rgba(255, 255, 255, 0.5);
+     cursor: ew-resize;
+}
+ @media screen and (max-width: 600px) {
+     .photo-name {
+         font-size: 1.2rem;
+    }
+     .photo-description {
+         font-size: 0.9rem;
+    }
+}
+ 
