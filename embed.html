@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embed Before and After Slider</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/davisdeatonphotography/before-after-slider@main/styles.css">
+</head>
+<body>
+    <div id="before-after-slider"></div>
+    <script src="https://cdn.jsdelivr.net/gh/davisdeatonphotography/before-after-slider@main/script.js"></script>
+    <script>
+        initBeforeAfterSlider('before-after-slider', {
+            beforeImage: 'https://live.staticflickr.com/65535/52802232602_4155f5911d_5k.jpg',
+            afterImage: 'https://live.staticflickr.com/65535/52802795271_460c894931_5k.jpg',
+            title: 'Photo Name',
+            description: 'Photo Description'
+        });
+    </script>
+</body>
+</html>
