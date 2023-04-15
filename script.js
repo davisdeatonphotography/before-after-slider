@@ -1,59 +1,54 @@
 const slider = document.querySelector('.slider');
 const afterImage = document.querySelector('.after-image');
-const sliderHandle = document.querySelector('.slider-handle');
-const sliderContainer = document.querySelector('.slider-container');
+const imageContainer = document.querySelector('.image-container');
 
-let isDragging = false;
+let dragging = false;
+let containerWidth = imageContainer.clientWidth;
 
 function updateSlider(x) {
-	let width = sliderContainer.clientWidth;
-	let position = Math.max(0, Math.min(x, width));
-	let percentage = (position / width) * 100;
-	afterImage.style.clipPath = `inset(0 ${percentage}% 0 0)`;
-	slider.style.backgroundImage = `linear-gradient(rgba(255, 255, 255, 0.3) ${percentage}%, transparent ${percentage}%)`;
-	sliderHandle.style.left = `${percentage}%`;
+  const percentage = (x / containerWidth) * 100;
+  afterImage.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+  slider.style.left = `${x}px`;
 }
 
-slider.addEventListener('mousedown', () => {
-	isDragging = true;
-});
+function onMouseDown(event) {
+  event.preventDefault();
+  dragging = true;
+}
 
-slider.addEventListener('mousemove', (event) => {
-	if (!isDragging) return;
-	let x = event.clientX - sliderContainer.getBoundingClientRect().left;
-	updateSlider(x);
-});
+function onMouseMove(event) {
+  if (!dragging) return;
+  const x = event.pageX - imageContainer.getBoundingClientRect().left;
+  updateSlider(x);
+}
 
-slider.addEventListener('mouseup', () => {
-	isDragging = false;
-});
+function onMouseUp() {
+  dragging = false;
+}
 
-slider.addEventListener('mouseleave', () => {
-	isDragging = false;
-});
+function onTouchStart(event) {
+  event.preventDefault();
+  dragging = true;
+}
 
-slider.addEventListener('touchstart', () => {
-	isDragging = true;
-}, {
-	passive: true
-});
+function onTouchMove(event) {
+  if (!dragging) return;
+  const x = event.touches[0].pageX - imageContainer.getBoundingClientRect().left;
+  updateSlider(x);
+}
 
-slider.addEventListener('touchmove', (event) => {
-	if (!isDragging) return;
-	let x = event.touches[0].clientX - sliderContainer.getBoundingClientRect().left;
-	updateSlider(x);
-}, {
-	passive: true
-});
+function onTouchEnd() {
+  dragging = false;
+}
 
-slider.addEventListener('touchend', () => {
-	isDragging = false;
-}, {
-	passive: true
-});
+slider.addEventListener('mousedown', onMouseDown);
+document.addEventListener('mousemove', onMouseMove);
+document.addEventListener('mouseup', onMouseUp);
 
-slider.addEventListener('touchcancel', () => {
-	isDragging = false;
-}, {
-	passive: true
+slider.addEventListener('touchstart', onTouchStart);
+document.addEventListener('touchmove', onTouchMove);
+document.addEventListener('touchend', onTouchEnd);
+
+window.addEventListener('resize', () => {
+  containerWidth = imageContainer.clientWidth;
 });
