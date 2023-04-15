@@ -3,27 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Before and After Widget</title>
-  <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/davisdeatonphotography/before-after-slider@main/styles.css">
+  <link rel="stylesheet" href="styles.css">
+  <title>Before and After Image Slider</title>
 </head>
 <body>
-  <div class="image-comparison">
-    <h2 class="photo-name">328 Sundance</h2>
-    <p class="photo-description">Photo description goes here.</p>
-    <div class="images-container">
-      <div class="label before-label">Before</div>
-      <div class="label after-label">After</div>
+  <div class="widget-wrapper">
+    <h1 class="photo-title">Photo Title</h1>
+    <div class="slider-container">
       <img class="before-image" src="https://live.staticflickr.com/65535/52802232602_4155f5911d_5k.jpg" alt="Before">
       <img class="after-image" src="https://live.staticflickr.com/65535/52802795271_460c894931_5k.jpg" alt="After">
       <div class="slider">
-        <div class="slider-circle">
-          <div class="slider-arrow"></div>
+        <div class="slider-handle">
+          <span class="arrow"></span>
         </div>
       </div>
     </div>
+    <div class="photo-description">Photo description goes here...</div>
   </div>
-
-  <script src="https://cdn.jsdelivr.net/gh/davisdeatonphotography/before-after-slider@main/script.js"></script>
+  <script src="scripts.js"></script>
 </body>
 </html>
