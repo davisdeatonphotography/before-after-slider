@@ -65,6 +65,8 @@ body {
   background-color: white;
 }
 
+/* ... previous styles ... */
+
 .arrow {
   position: absolute;
   top: 50%;
@@ -72,9 +74,15 @@ body {
   transform: translate(-50%, -50%);
   display: inline-block;
   border: solid white;
-  border-width: 2px 2px 0 0;
+  border-width: 0 2px 2px 0;
   padding: 5px;
+  transition: transform 0.3s;
 }
+
+.slider-handle:hover .arrow {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
 
 .photo-description {
   font-size: 16px;
