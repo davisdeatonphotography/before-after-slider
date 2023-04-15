@@ -1,96 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
-* {
-  box-sizing:border-box
-}
-
 body {
-  background:linear-gradient(62deg,#c93072 5%,#3365c0) fixed;
+  background-color: black;
 }
 
-h1 {
-  color: white;
-  text-align:center;
-  font-family: 'Lato', sans-serif;
-  margin-bottom:0;
+.image-comparison {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
 }
 
-.line {
-  width:100px;
-  height:1px;
-  margin:20px auto 40px auto;
-  border-bottom:1px solid white;
+.before-image,
+.after-image {
+  max-width: 100%;
+  height: auto;
 }
 
-img {
-  width:100%;
-  display:block;
+.after-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  clip-path: inset(0 50% 0 0);
 }
 
-.container {
-  width:50%;
-  display:block;
-  margin:30px auto
+.slider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: ew-resize;
 }
-
-#before-after-slider {
-  width:100%;
-  position:relative;
-  overflow:hidden;
-  border:3px solid white;
-}
-
-#after-image {
-  display:block
-}
-
-#before-image {
-  position:absolute;
-  height:100%;
-  width:50%;
-  top:0;
-  left:0;
-  overflow:hidden;
-  z-index:2;
-}
-
-#resizer {
-  position:absolute;
-  display:flex;
-  align-items:center;
-  z-index:5;
-  top:0;
-  left:50%;
-  height:100%;
-  width:4px;
-  background:white;
-  /*Stop vertical scrolling on touch*/
-  -ms-touch-action: pan-y;
-    touch-action: pan-y;
-}
-
-#resizer:after {
-  background:linear-gradient(62deg,#c93072 5%,#3365c0);
-  font-family: "Font Awesome 5 Free";
-  content:'\f337';
-  font-weight:900;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  color:white;
-  position:absolute;
-  margin: 0 0 0 -22px;
-  width:40px;
-  height:40px;
-  border-radius:50%;
-  border:3px solid white;
-
-}
-
-@media (max-width:767px) {
-  .container {
-    width:100%;
-    padding:0 20px
-  }
-}
-
-
