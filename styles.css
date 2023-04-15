@@ -65,8 +65,6 @@ body {
   background-color: white;
 }
 
-/* ... previous styles ... */
-
 .arrow {
   position: absolute;
   top: 50%;
@@ -82,7 +80,6 @@ body {
 .slider-handle:hover .arrow {
   transform: translate(-50%, -50%) rotate(45deg);
 }
-
 
 .photo-description {
   font-size: 16px;
