@@ -1,17 +1,51 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const imagesContainer = document.querySelector('.images-container');
-  const afterImage = document.querySelector('.after-image');
-  const slider = document.querySelector('.slider');
+const slider = document.querySelector('.slider');
+const afterImage = document.querySelector('.after-image');
+const sliderHandle = document.querySelector('.slider-handle');
+const sliderContainer = document.querySelector('.slider-container');
 
-  function updateSliderPosition(event) {
-    const rect = imagesContainer.getBoundingClientRect();
-    const mouseXPercentage = ((event.clientX || event.touches[0].clientX) - rect.left) / rect.width;
-    const clipWidth = rect.width * mouseXPercentage;
-    afterImage.style.clipPath = `inset(0 ${rect.width - clipWidth}px 0 0)`;
-    slider.style.left = `${clipWidth}px`;
-  }
+let isDragging = false;
 
-  imagesContainer.addEventListener('mousemove', updateSliderPosition);
-  imagesContainer.addEventListener('touchmove', updateSliderPosition);
-  imagesContainer.addEventListener('touchstart', updateSliderPosition);
+function updateSlider(x) {
+  let width = sliderContainer.clientWidth;
+  let position = Math.max(0, Math.min(x, width));
+  let percentage = (position / width) * 100;
+  afterImage.style.clipPath = `inset(0 ${percentage}% 0 0)`;
+  slider.style.backgroundImage = `linear-gradient(rgba(255, 255, 255, 0.3) ${percentage}%, transparent ${percentage}%)`;
+  sliderHandle.style.left = `${percentage}%`;
+}
+
+slider.addEventListener('mousedown', () => {
+  isDragging = true;
 });
+
+slider.addEventListener('mousemove', (event) => {
+  if (!isDragging) return;
+  let x = event.clientX - sliderContainer.getBoundingClientRect().left;
+  updateSlider(x);
+});
+
+slider.addEventListener('mouseup', () => {
+  isDragging = false;
+});
+
+slider.addEventListener('mouseleave', () => {
+  isDragging = false;
+});
+
+slider.addEventListener('touchstart', () => {
+  isDragging = true;
+}, { passive: true });
+
+slider.addEventListener('touchmove', (event) => {
+  if (!isDragging) return;
+  let x = event.touches[0].clientX - sliderContainer.getBoundingClientRect().left;
+  updateSlider(x);
+}, { passive: true });
+
+slider.addEventListener('touchend', () => {
+  isDragging = false;
+}, { passive: true });
+
+slider.addEventListener('touchcancel', () => {
+  isDragging = false;
+}, { passive: true });
