@@ -6,39 +6,39 @@ let dragging = false;
 let containerWidth = imageContainer.clientWidth;
 
 function updateSlider(x) {
-  const percentage = (x / containerWidth) * 100;
-  afterImage.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
-  slider.style.left = `${x}px`;
+	const percentage = (x / containerWidth) * 100;
+	afterImage.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+	slider.style.left = `${x}px`;
 }
 
 function onMouseDown(event) {
-  event.preventDefault();
-  dragging = true;
+	event.preventDefault();
+	dragging = true;
 }
 
 function onMouseMove(event) {
-  if (!dragging) return;
-  const x = event.pageX - imageContainer.getBoundingClientRect().left;
-  updateSlider(x);
+	if (!dragging) return;
+	const x = event.pageX - imageContainer.getBoundingClientRect().left;
+	updateSlider(x);
 }
 
 function onMouseUp() {
-  dragging = false;
+	dragging = false;
 }
 
 function onTouchStart(event) {
-  event.preventDefault();
-  dragging = true;
+	event.preventDefault();
+	dragging = true;
 }
 
 function onTouchMove(event) {
-  if (!dragging) return;
-  const x = event.touches[0].pageX - imageContainer.getBoundingClientRect().left;
-  updateSlider(x);
+	if (!dragging) return;
+	const x = event.touches[0].pageX - imageContainer.getBoundingClientRect().left;
+	updateSlider(x);
 }
 
 function onTouchEnd() {
-  dragging = false;
+	dragging = false;
 }
 
 slider.addEventListener('mousedown', onMouseDown);
@@ -50,5 +50,5 @@ document.addEventListener('touchmove', onTouchMove);
 document.addEventListener('touchend', onTouchEnd);
 
 window.addEventListener('resize', () => {
-  containerWidth = imageContainer.clientWidth;
+	containerWidth = imageContainer.clientWidth;
 });
