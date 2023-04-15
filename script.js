@@ -1,55 +1,54 @@
-const slider = document.querySelector('.slider');
-const handle = document.querySelector('.handle');
-const beforeImage = document.querySelector('.before-image');
-const imageContainer = document.querySelector('.image-container');
+function initBeforeAfterSlider(containerId, options) {
+    const container = document.getElementById(containerId);
 
-let dragging = false;
-let containerWidth = imageContainer.clientWidth;
-
-function updateSlider(x) {
-    const percentage = (x / containerWidth) * 100;
-    beforeImage.style.width = `${percentage}%`;
-    handle.style.left = `${x}px`;
+    const imageContainer = container.querySelector('.image-container');
+    const afterImage = container.querySelector('.after-image');
+    const handle = container.querySelector('.handle');
+    const handleCircle = container.querySelector('.handle-circle');
+    
+    let isDragging = false;
+    
+    function updateSlider(event) {
+        const containerRect = imageContainer.getBoundingClientRect();
+        const xPos = event.clientX - containerRect.left;
+        const percentage = xPos / containerRect.width;
+        afterImage.style.width = `${percentage * 100}%`;
+        handle.style.left = `${xPos}px`;
+        handleCircle.style.marginLeft = `${-20 * (1 - percentage)}px`;
+    }
+    
+    function onMouseDown(event) {
+        isDragging = true;
+        updateSlider(event);
+    }
+    
+    function onMouseMove(event) {
+        if (!isDragging) return;
+        updateSlider(event);
+    }
+    
+    function onMouseUp() {
+        isDragging = false;
+    }
+    
+    imageContainer.addEventListener('mousedown', onMouseDown);
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+    
+    imageContainer.addEventListener('touchstart', (event) => {
+        onMouseDown(event.touches[0]);
+    });
+    
+    imageContainer.addEventListener('touchmove', (event) => {
+        onMouseMove(event.touches[0]);
+    });
+    
+    imageContainer.addEventListener('touchend', onMouseUp);
 }
 
-function onMouseDown(event) {
-    event.preventDefault();
-    dragging = true;
-}
-
-function onMouseMove(event) {
-    if (!dragging) return;
-    const x = Math.max(0, Math.min(event.pageX - imageContainer.getBoundingClientRect().left, containerWidth));
-    updateSlider(x);
-}
-
-function onMouseUp() {
-    dragging = false;
-}
-
-function onTouchStart(event) {
-    event.preventDefault();
-    dragging = true;
-}
-
-function onTouchMove(event) {
-    if (!dragging) return;
-    const x = Math.max(0, Math.min(event.touches[0].pageX - imageContainer.getBoundingClientRect().left, containerWidth));
-    updateSlider(x);
-}
-
-function onTouchEnd() {
-    dragging = false;
-}
-
-handle.addEventListener('mousedown', onMouseDown);
-document.addEventListener('mousemove', onMouseMove);
-document.addEventListener('mouseup', onMouseUp);
-
-handle.addEventListener('touchstart', onTouchStart);
-document.addEventListener('touchmove', onTouchMove);
-document.addEventListener('touchend', onTouchEnd);
-
-window.addEventListener('resize', () => {
-    containerWidth = imageContainer.clientWidth;
+initBeforeAfterSlider('before-after-slider', {
+    beforeImage: 'https://live.staticflickr.com/65535/52802232602_4155f5911d_5k.jpg',
+    afterImage: 'https://live.staticflickr.com/65535/52802795271_460c894931_5k.jpg',
+    title: 'Photo Name',
+    description: 'Photo Description'
 });
