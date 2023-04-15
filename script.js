@@ -18,7 +18,7 @@ function onMouseDown(event) {
 
 function onMouseMove(event) {
   if (!dragging) return;
-  const x = Math.max(0, Math.min(event.pageX - imageContainer.getBoundingClientRect().left, containerWidth));
+  const x = Math.max(0, Math.min(event.pageX - imageContainer.getBoundingClientRect().left, containerWidth - slider.clientWidth));
   updateSlider(x);
 }
 
@@ -33,7 +33,7 @@ function onTouchStart(event) {
 
 function onTouchMove(event) {
   if (!dragging) return;
-  const x = Math.max(0, Math.min(event.touches[0].pageX - imageContainer.getBoundingClientRect().left, containerWidth));
+  const x = Math.max(0, Math.min(event.touches[0].pageX - imageContainer.getBoundingClientRect().left, containerWidth - slider.clientWidth));
   updateSlider(x);
 }
 
